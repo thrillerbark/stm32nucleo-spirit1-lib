@@ -47,6 +47,7 @@ extern "C" {
 #include "stm32l1xx_hal.h"
 #include "SPIRIT_Config.h"
 #include "radio_spi.h" 
+#include "spirit1-arch.h"
 /**
  * @addtogroup BSP
  * @{
@@ -130,8 +131,8 @@ extern "C" {
 #define LINEAR_FIFO_ADDRESS 0xFF                                  /*!< Linear FIFO address*/
   
 /* SPIRIT1_Spi_config_Private_FunctionPrototypes */
-#define SPI_ENTER_CRITICAL()           __disable_irq()
-#define SPI_EXIT_CRITICAL()            __enable_irq()
+#define SPI_ENTER_CRITICAL()         IRQ_DISABLE()
+#define SPI_EXIT_CRITICAL()          IRQ_ENABLE()
   
 /* SPIRIT1_Spi_config_Private_Functions */
 #define RadioSpiCSLow()        HAL_GPIO_WritePin(RADIO_SPI_CS_PORT, RADIO_SPI_CS_PIN, GPIO_PIN_RESET)
